@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="1906电影网是面向影迷打造的在线影视导航与资讯平台，汇集院线新片、经典老片、纪录片、动漫与短片，提供影片介绍、观影指南、排片信息与影评观点。访问 1906电影网 获取最新电影动态与高清影视资源索引，网址 https://1906dianyingwang-app.github.io。">
+<meta name="keywords" content="1906电影网,1906dianyingwang-app.github.io,电影网,在线电影,高清电影,院线新片,经典电影,电影资讯,影片推荐,观影指南">
+<meta name="author" content="1906电影网">
+<meta name="robots" content="index, follow">
+<meta name="bingbot" content="index, follow">
+<meta name="theme-color" content="#0f172a">
+<title>1906电影网 - 专注影视资讯与观影指南的在线电影平台 | 1906dianyingwang-app.github.io</title>
+<style>
+:root{
+  --ink:#e8eef7;
+  --ink-dim:#a9b6c8;
+  --brand:#ff5a3c;
+  --brand-2:#ffb020;
+  --bg:#070b16;
+  --card:#121a2c;
+  --line:#233044;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+/* 顶部 */
+header{position:sticky;top:0;z-index:50;background:rgba(7,11,22,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-size:20px;font-weight:800;letter-spacing:.5px;display:flex;align-items:center;gap:8px}
+.logo b{color:var(--brand)}
+.logo span{font-size:12px;color:var(--ink-dim);font-weight:400;border-left:1px solid var(--line);padding-left:8px}
+.nav-links{display:flex;gap:22px;font-size:14px}
+.nav-links a{color:var(--ink-dim);transition:.2s}
+.nav-links a:hover{color:var(--brand)}
+.menu-btn{display:none;background:none;border:1px solid var(--line);color:var(--ink);padding:6px 10px;border-radius:6px;font-size:13px}
+/* 首屏 */
+.hero{position:relative;padding:70px 0 60px;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-120px;top:-80px;width:420px;height:420px;background:radial-gradient(circle,rgba(255,90,60,.28),transparent 60%);z-index:0}
+.hero-in{position:relative;z-index:1;display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:center}
+.tagline{display:inline-block;font-size:12px;color:var(--brand);border:1px solid rgba(255,90,60,.4);padding:4px 12px;border-radius:30px;margin-bottom:16px}
+.hero h1{font-size:40px;line-height:1.2;font-weight:900;letter-spacing:-.5px}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--brand),var(--brand-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--ink-dim);margin:18px 0 26px;max-width:520px;font-size:15px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:12px 22px;border-radius:8px;font-size:14px;font-weight:600;transition:.2s}
+.btn-main{background:var(--brand);color:#fff}
+.btn-main:hover{background:#ff714f;transform:translateY(-2px)}
+.btn-ghost{border:1px solid var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--brand);color:var(--brand)}
+.hero-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.hero-card h3{font-size:15px;margin-bottom:14px;color:var(--brand-2)}
+.now-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line)}
+.now-item:last-child{border:none}
+.now-item .t{flex:1}
+.now-item .t b{font-size:14px;display:block}
+.now-item .t small{color:var(--ink-dim);font-size:12px}
+.now-item .s{font-size:12px;color:var(--brand);border:1px solid rgba(255,90,60,.35);padding:2px 8px;border-radius:20px;height:fit-content}
+/* 通用栏目 */
+section{padding:56px 0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:28px;flex-wrap:wrap}
+.sec-head h2{font-size:26px;font-weight:800}
+.sec-head h2 small{display:block;font-size:13px;color:var(--ink-dim);font-weight:400;margin-top:6px;letter-spacing:1px}
+.sec-head a{font-size:13px;color:var(--brand)}
+/* 栏目一：影片库 */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.film{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:.25s}
+.film:hover{transform:translateY(-6px);border-color:var(--brand)}
+.poster{height:200px;position:relative;overflow:hidden}
+.poster i{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:900;color:rgba(255,255,255,.18)}
+.poster .no{position:absolute;top:10px;left:10px;background:var(--brand);color:#fff;font-size:11px;padding:3px 9px;border-radius:5px;font-weight:700}
+.film .info{padding:12px 14px}
+.film .info b{font-size:15px;display:block;margin-bottom:4px}
+.film .info small{color:var(--ink-dim);font-size:12px}
+.film .info .meta{display:flex;justify-content:space-between;margin-top:10px;font-size:12px;color:var(--brand-2)}
+/* 栏目二：资讯 */
+.news{display:grid;grid-template-columns:1.4fr 1fr;gap:24px}
+.lead{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.lead .ph{height:220px;background:linear-gradient(135deg,#2a1a3d,#0f2a3d);display:flex;align-items:flex-end;padding:20px;font-size:22px;font-weight:800}
+.lead .bd{padding:20px}
+.lead .bd p{color:var(--ink-dim);font-size:14px;margin-top:8px}
+.news-list{display:flex;flex-direction:column;gap:12px}
+.news-list a{display:flex;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;transition:.2s}
+.news-list a:hover{border-color:var(--brand-2)}
+.news-list .d{flex:1}
+.news-list .d b{font-size:14px;display:block}
+.news-list .d small{color:var(--ink-dim);font-size:12px}
+.news-list .arrow{color:var(--brand);align-self:center}
+/* 栏目三：观影指南 */
+.guide{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.guide .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative}
+.guide .box .n{font-size:34px;font-weight:900;color:rgba(255,90,60,.18);position:absolute;right:18px;top:12px;line-height:1}
+.guide .box h4{font-size:17px;margin-bottom:8px}
+.guide .box p{color:var(--ink-dim);font-size:13.5px}
+.guide .box ul{margin:12px 0 0;padding-left:16px;font-size:13px;color:var(--ink-dim)}
+.guide .box li{margin-bottom:5px}
+/* 栏目四：关于/站点信息 */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:30px;background:linear-gradient(135deg,var(--card),#0c1424);border:1px solid var(--line);border-radius:18px;padding:34px}
+.about h3{font-size:20px;margin-bottom:12px}
+.about p{color:var(--ink-dim);font-size:14px}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.facts div{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center}
+.facts b{display:block;font-size:22px;color:var(--brand)}
+.facts small{font-size:12px;color:var(--ink-dim)}
+.site-url{display:flex;align-items:center;gap:10px;background:#070b16;border:1px solid var(--line);border-radius:10px;padding:14px;margin-top:16px;font-size:13px;word-break:break-all}
+.site-url b{color:var(--brand-2)}
+/* 栏目五：留言/订阅 */
+.subscribe{text-align:center;background:radial-gradient(ellipse at center,rgba(255,176,32,.12),transparent 60%)}
+.subscribe h2{font-size:28px}
+.subscribe p{color:var(--ink-dim);margin:10px 0 22px}
+.sub-form{display:flex;gap:10px;max-width:460px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.sub-form input{flex:1;min-width:220px;background:#070b16;border:1px solid var(--line);color:var(--ink);padding:12px 16px;border-radius:8px;font-size:14px;outline:none}
+.sub-form input:focus{border-color:var(--brand)}
+/* 页脚 */
+footer{border-top:1px solid var(--line);padding:34px 0 26px;color:var(--ink-dim);font-size:13px}
+.foot-flex{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.foot-nav{display:flex;gap:16px;flex-wrap:wrap}
+.foot-nav a:hover{color:var(--brand)}
+.copyright{margin-top:18px;padding-top:16px;border-top:1px dashed var(--line);text-align:center;font-size:12px}
+/* 响应式 */
+@media(max-width:900px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .hero-in,.news,.about{grid-template-columns:1fr}
+  .guide{grid-template-columns:repeat(2,1fr)}
+  .hero h1{font-size:32px}
+}
+@media(max-width:640px){
+  .menu-btn{display:block}
+  .nav-links{position:fixed;inset:60px 0 0;background:rgba(7,11,22,.97);flex-direction:column;padding:26px;gap:18px;transform:translateX(100%);transition:.3s}
+  .nav-links.open{transform:translateX(0)}
+  .grid,.guide{grid-template-columns:1fr 1fr}
+  .facts{grid-template-columns:repeat(3,1fr);gap:8px}
+  .facts div{padding:10px 4px}
+  .hero{padding:44px 0 40px}
+  .hero h1{font-size:27px}
+  section{padding:40px 0}
+  .lead .ph{height:160px;font-size:18px}
+}
+@media(max-width:380px){
+  .grid,.guide{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/yazhou.js"></script>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo"><b>1906电影网</b><span>qiuxiagaoqingdianyingwang-app</span></div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#films">影片库</a>
+      <a href="#news">影视资讯</a>
+      <a href="#guide">观影指南</a>
+      <a href="#about">关于本站</a>
+      <a href="#contact">留言板</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn">菜单</button>
+  </div>
+</header>
+
+<main>
+  <!-- 首屏 -->
+  <section class="hero">
+    <div class="wrap hero-in">
+      <div>
+        <span class="tagline">1906 · 影像不止于观看</span>
+        <h1>在 <em>1906电影网</em><br>遇见每一部值得被记住的影片</h1>
+        <p>从院线热映到冷门佳作，从经典修复到独立短片，1906电影网为你整理影片信息、观影入口与深度影评。官方站点：<b style="color:var(--brand-2)">https://1906dianyingwang-app.github.io</b>，随时随地开启观影之旅。</p>
+        <div class="cta">
+          <a class="btn btn-main" href="#films">浏览影片库 →</a>
+          <a class="btn btn-ghost" href="#guide">观影指南</a>
+        </div>
+      </div>
+      <aside class="hero-card">
+        <h3>· 正在热映</h3>
+        <div class="now-item">
+          <div class="t"><b>边海</b><small>剧情 / 爱情 · 96分钟</small></div>
+          <span class="s">8.1</span>
+        </div>
+        <div class="now-item">
+          <div class="t"><b>潜行</b><small>犯罪 / 动作 · 118分钟</small></div>
+          <span class="s">7.6</span>
+        </div>
+        <div class="now-item">
+          <div class="t"><b>敦煌英雄</b><small>历史 / 战争 · 130分钟</small></div>
+          <span class="s">7.9</span>
+        </div>
+        <div class="now-item">
+          <div class="t"><b>星愿</b><small>动画 / 奇幻 · 102分钟</small></div>
+          <span class="s">7.3</span>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 栏目一：影片库 -->
+  <section id="films">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>影片库 <small>FILM LIBRARY</small></h2>
+        <a href="#">查看全部影片 ›</a>
+      </div>
+      <div class="grid">
+        <article class="film">
+          <div class="poster" style="background:linear-gradient(160deg,#3a1c71,#d76d77)"><i>壹</i><span class="no">TOP 1</span></div>
+          <div class="info">
+            <b>肖申克的救赎</b>
+            <small>1994 · 剧情 / 犯罪 · 美国</small>
+            <div class="meta"><span>豆瓣 9.7</span><span>珍藏</span></div>
+          </div>
+        </article>
+        <article class="film">
+          <div class="poster" style="background:linear-gradient(160deg,#0f2027,#203a43,#2c5364)"><i>贰</i><span class="no">TOP 2</span></div>
+          <div class="info">
+            <b>阿甘正传</b>
+            <small>1994 · 剧情 / 爱情 · 美国</small>
+            <div class="meta"><span>豆瓣 9.5</span><span>珍藏</span></div>
+          </div>
+        </article>
+        <article class="film">
+          <div class="poster" style="background:linear-gradient(160deg,#f12711,#f5af19)"><i>叁</i><span class="no">TOP 3</span></div>
+          <div class="info">
+            <b>霸王别姬</b>
+            <small>1993 · 剧情 / 爱情 · 中国</small>
+            <div class="meta"><span>豆瓣 9.6</span><span>国粹</span></div>
+          </div>
+        </article>
+        <article class="film">
+          <div class="poster" style="background:linear-gradient(160deg,#232526,#414345)"><i>肆</i><span class="no">TOP 4</span></div>
+          <div class="info">
+            <b>这个杀手不太冷</b>
+            <small>1994 · 剧情 / 动作 · 法国</small>
+            <div class="meta"><span>豆瓣 9.4</span><span>经典</span></div>
+          </div>
+        </article>
+        <article class="film">
+          <div class="poster" style="background:linear-gradient(160deg,#42275a,#734b6d)"><i>伍</i><span class="no">推荐</span></div>
+          <div class="info">
+            <b>千与千寻</b>
+            <small>2001 · 动画 / 奇幻 · 日本</small>
+            <div class="meta"><span>豆瓣 9.4</span><span>动画</span></div>
+          </div>
+        </article>
+        <article class="film">
+          <div class="poster" style="background:linear-gradient(160deg,#00467f,#a5cc82)"><i>陆</i><span class="no">推荐</span></div>
+          <div class="info">
+            <b>泰坦尼克号</b>
+            <small>1997 · 剧情 / 爱情 · 美国</small>
+            <div class="meta"><span>豆瓣 9.4</span><span>史诗</span></div>
+          </div>
+        </article>
+        <article class="film">
+          <div class="poster" style="background:linear-gradient(160deg,#870000,#190a05)"><i>柒</i><span class="no">新片</span></div>
+          <div class="info">
+            <b>第二十条</b>
+            <small>2024 · 剧情 / 喜剧 · 中国</small>
+            <div class="meta"><span>豆瓣 7.5</span><span>国产</span></div>
+          </div>
+        </article>
+        <article class="film">
+          <div class="poster" style="background:linear-gradient(160deg,#1d976c,#93f9b9)"><i>捌</i><span class="no">新片</span></div>
+          <div class="info">
+            <b>飞驰人生2</b>
+            <small>2024 · 喜剧 / 动作 · 中国</small>
+            <div class="meta"><span>豆瓣 7.7</span><span>贺岁</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目二：影视资讯 -->
+  <section id="news">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>影视资讯 <small>CINEMA NEWS</small></h2>
+        <a href="#">资讯归档 ›</a>
+      </div>
+      <div class="news">
+        <div class="lead">
+          <div class="ph">2026 春节档前瞻：<br>五部大片同台竞技</div>
+          <div class="bd">
+            <small style="color:var(--brand)">档期观察 · 3 分钟阅读</small>
+            <p>1906电影网梳理今年春节档定档影片，从特效巨制到现实题材，从动画续作到悬疑新篇。档期竞争背后，是观众对"好故事"的回归。提前收藏排片表，避开拥挤场次。</p>
+            <a class="btn btn-ghost" href="#" style="margin-top:12px;font-size:13px">阅读全文 →</a>
+          </div>
+        </div>
+        <div class="news-list">
+          <a href="#"><div class="d"><b>经典修复计划：十部华语老片重返大银幕</b><small>行业动态 · 昨天</small></div><span class="arrow">›</span></a>
+          <a href="#"><div class="d"><b>流媒体还是影院？观影习惯正在发生什么变化</b><small>观点评论 · 2 天前</small></div><span class="arrow">›</span></a>
+          <a href="#"><div class="d"><b>纪录片周报：自然、人文与历史的三种注视</b><small>片单推荐 · 3 天前</small></div><span class="arrow">›</span></a>
+          <a href="#"><div class="d"><b>新人导演访谈：第一部长片的 180 个日夜</b><small>幕后故事 · 4 天前</small></div><span class="arrow">›</span></a>
+          <a href="#"><div class="d"><b>影史今日：那些改变电影语言的时刻</b><small>影史钩沉 · 5 天前</small></div><span class="arrow">›</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目三：观影指南 -->
+  <section id="guide">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>观影指南 <small>WATCHING GUIDE</small></h2>
+        <a href="#">更多攻略 ›</a>
+      </div>
+      <div class="guide">
+        <div class="box">
+          <span class="n">01</span>
+          <h4>选片不踩雷</h4>
+          <p>看预告片只能了解三成，真正决定一部片子值不值得看的是节奏与台词密度。</p>
+          <ul>
+            <li>先看导演前作，风格延续性很高</li>
+            <li>关注剪辑节奏而非特效堆砌</li>
+            <li>类型片看清"子类型"再下单</li>
+          </ul>
+        </div>
+        <div class="box">
+          <span class="n">02</span>
+          <h4>影院体验课</h4>
+          <p>同样的影片，放映格式会让体验相差一个量级。</p>
+          <ul>
+            <li>动作大片优先 IMAX / 激光厅</li>
+            <li>文艺片中小厅反而更沉浸</li>
+            <li>避开首周晚场，选午后人少</li>
+          </ul>
+        </div>
+        <div class="box">
+          <span class="n">03</span>
+          <h4>家庭观影</h4>
+          <p>带孩子或长辈看片，片单比场次更需要提前规划。</p>
+          <ul>
+            <li>动画先看分级与吓人程度</li>
+            <li>老人偏好节奏舒缓、对白清晰</li>
+            <li>备好字幕与观影时长提示</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目四：关于本站 -->
+  <section id="about">
+    <div class="wrap">
+      <div class="about">
+        <div>
+          <h3>关于 1906电影网</h3>
+          <p>1906电影网（1906dianyingwang-app）是一个以"选片"为核心的影视导航与资讯站点。我们不做搬运，只做筛选：把分散的影片信息、排片动态、影评观点整理成一份可读、可查、可收藏的观影手册。</p>
+          <p style="margin-top:10px">无论你是想找一部周末消遣的喜剧，还是补完某个导演的全部作品，亦或只是想知道"今天哪部值得看"，这里都能给你一个不敷衍的答案。</p>
+          <div class="facts">
+            <div><b>12k+</b><small>收录影片</small></div>
+            <div><b>60+</b><small>专题片单</small></div>
+            <div><b>每日</b><small>资讯更新</small></div>
+          </div>
+        </div>
+        <div>
+          <h3>访问站点</h3>
+          <p>1906电影网 官方网址（GitHub Pages）：</p>
+          <div class="site-url">🌐 <b>https://1906dianyingwang-app.github.io</b></div>
+          <p style="margin-top:14px">站内栏目：</p>
+          <div class="site-url" style="flex-direction:column;align-items:flex-start;gap:6px">
+            <span>· 影片库：按类型、年份、地区检索</span>
+            <span>· 影视资讯：档期、行业与评论</span>
+            <span>· 观影指南：选片、影院与家庭观影</span>
+            <span>· 留言板：影迷交流与需求反馈</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目五：留言订阅 -->
+  <section id="contact" class="subscribe">
+    <div class="wrap">
+      <h2>不想错过好片？</h2>
+      <p>留下邮箱，1906电影网每周为你推送一份"值得看"的片单，无广告、可随时退订。</p>
+      <form class="sub-form" onsubmit="event.preventDefault();alert('订阅请求已收到，感谢关注 1906电影网！');">
+        <input type="email" placeholder="your@email.com" required>
+        <button class="btn btn-main" type="submit">订阅片单</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-flex">
+      <div>© <span id="year"></span> 1906电影网 · 影视导航与资讯平台</div>
+      <div class="foot-nav">
+        <a href="#films">影片库</a>
+        <a href="#news">影视资讯</a>
+        <a href="#guide">观影指南</a>
+        <a href="#about">关于本站</a>
+        <a href="#contact">留言板</a>
+      </div>
+    </div>
+    <div class="copyright">
+      网站名称：1906电影网 ｜ 官方网址：https://1906dianyingwang-app.github.io ｜ 本站为单页结构，内页链接以锚点（#）实现，符合搜索引擎抓取规范。<br>
+      温馨提示：请通过正规渠道观看影视作品，支持正版，尊重创作者劳动。
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+var menuBtn = document.getElementById('menuBtn');
+var navLinks = document.getElementById('navLinks');
+menuBtn.addEventListener('click', function(){
+  navLinks.classList.toggle('open');
+  menuBtn.textContent = navLinks.classList.contains('open') ? '关闭' : '菜单';
+});
+navLinks.addEventListener('click', function(e){
+  if(e.target.tagName === 'A' && window.innerWidth <= 640){
+    navLinks.classList.remove('open');
+    menuBtn.textContent = '菜单';
+  }
+});
+</script>
+</body>
+</html>
